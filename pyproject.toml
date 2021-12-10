@@ -94,3 +94,8 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 no_implicit_reexport = true
+
+[tool.isort]
+multi_line_output = 3
+line_length = 160
+include_trailing_comma = true

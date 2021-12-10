@@ -27,7 +27,7 @@ def test_version():
         ("", True, "Hello Visitor!"),
         ("Ada", False, "Hello Ada."),
         ("Ana", True, "Hello Ana!"),
-     ]
+    ],
 )
 def test_hello(name, greater, expected):
     assert hello(name, greater) == expected

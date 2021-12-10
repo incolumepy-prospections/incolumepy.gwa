@@ -14,6 +14,13 @@ python = ">=3.6.8,<4"
 [tool.poetry.dev-dependencies]
 pytest-cov = "^3.0.0"
 pytest = "^6.2.5"
+isort = "^5.10.1"
+pydocstyle = "^6.1.1"
+pylint = "^2.12.2"
+mypy = "^0.910"
+black = "^21.12b0"
+flake8 = "^4.0.1"
+tox = "^3.24.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

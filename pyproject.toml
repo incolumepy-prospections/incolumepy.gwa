@@ -4,6 +4,9 @@ version = "0.1.0-a0"
 description = "Prospections from Github Workflows Actions"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 license = "BSD 2-Clause License"
+packages=[
+    {include = 'incolumepy/gwa', from=''},
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"

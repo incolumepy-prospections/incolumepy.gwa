@@ -3,6 +3,7 @@ import re
 import pytest
 
 from incolumepy.gwa import __root__, __version__, version_file
+from incolumepy.gwa.hello import hello
 
 __author__ = "@britodfbr"  # pragma: no cover
 
@@ -21,10 +22,12 @@ def test_version():
 
 @pytest.mark.parametrize(
     "name, greater, expected",
-    ["", False, "Hello Visitor."],
-    ["", True, "Hello Visitor!"],
-    ["Ada", False, "Hello Ada."],
-    ["Ana", True, "Hello Ana!"],
+    [
+        ("", False, "Hello Visitor."),
+        ("", True, "Hello Visitor!"),
+        ("Ada", False, "Hello Ada."),
+        ("Ana", True, "Hello Ana!"),
+     ]
 )
-def test_hello():
-    ...
+def test_hello(name, greater, expected):
+    assert hello(name, greater) == expected

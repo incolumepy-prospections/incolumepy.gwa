@@ -1,6 +1,9 @@
-import pytest
 import re
-from incolumepy.gwa import __version__, __root__, version_file
+
+import pytest
+
+from incolumepy.gwa import __root__, __version__, version_file
+
 __author__ = '@britodfbr'  # pragma: no cover
 def test_root():
     assert '/'.join(__root__.parts[-3:]) == "incolumepy.gwa/incolumepy/gwa"

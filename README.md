@@ -310,3 +310,8 @@ $ v=`poetry version prerelease`; pytest tests/ && git ci -m "$v" pyproject.toml 
 $ s=`poetry version patch`; pytest tests/ && git ci -m "`echo $s`" pyproject.toml `find -name "version.txt"`; git tag -f `poetry version -s` -m "$(echo $s)"  #com tag
 
 ```
+## Facility with make
+Use make to easy various commands.
+```bash
+$ curl https://pastebin.com/raw/AKmCM7MC -o Makefile
+```

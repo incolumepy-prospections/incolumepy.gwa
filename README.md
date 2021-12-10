@@ -313,5 +313,5 @@ $ s=`poetry version patch`; pytest tests/ && git ci -m "`echo $s`" pyproject.tom
 ## Facility with make
 Use make to easy various commands.
 ```bash
-$ curl https://pastebin.com/raw/AKmCM7MC -o Makefile
+$ curl https://pastebin.com/raw/eTHpL70G -o Makefile
 ```

@@ -102,3 +102,51 @@ include_trailing_comma = true
 
 [tool.black]
 line_length = 160
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+minversion = 3.3.0
+isolated_build = True
+envlist =
+    black
+    flake8
+    isort
+    mypy
+    pydocstyle
+    pylint
+    py{36,37,38,39,310}
+
+;[tox:.package]
+;basepython = python3
+
+[testenv]
+whitelist_externals = poetry
+skip_install = true
+commands =
+    poetry env use {envpython}
+    poetry install -vv --no-root
+    poetry run pytest {posargs} tests/
+
+[testenv:flake8]
+deps = flake8
+commands = flake8 --config pyproject.toml incolumepy/ tests/
+
+[testenv:mypy]
+deps =
+    mypy
+    types-toml
+commands = mypy incolumepy/
+
+[testenv:pydocstyle]
+commands = poetry run pydocstyle incolumepy/ tests/
+
+[testenv:isort]
+commands = poetry run isort --check --atomic --py all incolumepy/ tests/
+
+[testenv:pylint]
+commands = poetry run pylint incolumepy/ tests/
+
+[testenv:black]
+commands = poetry run black --check incolumepy/ tests/
+"""

@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "incolumepy.gwa"
+version = "0.1.0-a0"
+description = "Prospections from Github Workflows Actions"
+authors = ["Britodfbr <britodfbr@gmail.com>"]
+license = "BSD 2-Clause License"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

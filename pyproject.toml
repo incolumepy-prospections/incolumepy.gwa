@@ -99,3 +99,6 @@ no_implicit_reexport = true
 multi_line_output = 3
 line_length = 160
 include_trailing_comma = true
+
+[tool.black]
+line_length = 160

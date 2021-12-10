@@ -1,7 +1,19 @@
 # incolumepy.gwa
-prospect GitHub Workflows Actions
+Prospection GitHub Workflows Actions
 
-Contains poetry + pytest + coverage + Python multiversions (pyenv) + tox + black + isort + flake8 + pylint + pydocstyle + mypy
+Contains:
++ poetry
++ pytest
++ coverage
++ Python multiversions (pyenv)
++ tox
++ black
++ isort
++ flake8
++ pylint
++ pydocstyle
++ mypy
++ semver
 
 ---
 ## Start Project
@@ -278,3 +290,23 @@ Contains poetry + pytest + coverage + Python multiversions (pyenv) + tox + black
    ```bash
    $ tox
    ```
+
+## Control version with poetry
+Unlike bumpversion, poetry changes the version of the main file only.
+To work around this situation and update the version of pyproject.toml,
+__init__.py and version.txt, we will do the following procedure.
+
+```bash
+$ cat > incolumepy/gwa/__init__.py << eof
+import toml
+from pathlib import Path
+__root__ = Path(__file__).parents[0]
+version_file = __root__.joinpath('version.txt')
+version_file.write_text(f"{toml.load(Path(__file__).parents[2].joinpath('pyproject.toml'))['tool']['poetry']['version']}\n")
+__version__ = version_file.read_text().strip()
+eof
+
+$ v=`poetry version prerelease`; pytest tests/ && git ci -m "$v" pyproject.toml $(find -name "version.txt")  #sem tag
+$ s=`poetry version patch`; pytest tests/ && git ci -m "`echo $s`" pyproject.toml `find -name "version.txt"`; git tag -f `poetry version -s` -m "$(echo $s)"  #com tag
+
+```

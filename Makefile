@@ -1,10 +1,12 @@
 .DEFAULT_GOAL := help
 DIRECTORIES = $$(find -name incolumepy -o -wholename ./tests)
 PKGNAME := "incolumepy.gwa"
+
+.PHOMY: setup
 setup: ## setup environment python with poetry
-setup:
 	@poetry env use 3.10
 
+#.PHOMY: install
 #install:  ## Install this package using poetry
 #install: setup
 #	@poetry add $(PKGNAME)
@@ -101,6 +103,10 @@ git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
 git checkout main; git merge --no-ff dev -m "$$msg" \
 && git tag -f $$(poetry version -s) -m "$$msg" \
 && git checkout dev
+
+.PHONY: publish-testing
+publish-testing: ## Publish on test.pypi.org
+	@poetry publish -r testpypi --build
 
 .PHONY: format
 format: ## Formate project code with code style (isort, black)

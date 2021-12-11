@@ -19,7 +19,14 @@ Contains:
 ## Start Project
 1. Create a github project on github.com;
 2. Clone the project, on local host;
-3. Configure project structure:
+3. Create the branch dev and branches of control when necessary:
+   ```bash
+   $ git br dev
+   $ git co -b feature#1 dev
+   $ git co -b feature#2 dev
+   $ git co -b bug#2 dev
+   ```
+4. Configure project structure:
    1. Set Editor configuration:
       ```bash
       $ curl https://pastebin.com/raw/TrDhuvFZ -o .editorconfig
@@ -29,7 +36,7 @@ Contains:
       $ curl https://pastebin.com/raw/C910Dqze -o .gitignore
       ```
     3. Commit changes
-4. Configure poetry:
+5. Configure poetry:
    1. Init poetry
       ```bash
       $ poetry init    # response that need
@@ -53,7 +60,7 @@ Contains:
       python = ">=3.6.8,<4"
        ```
    4. Commit changes
-5. Configure unit tests with pytest:
+6. Configure unit tests with pytest:
    1. Install pytest
       ```bash
       $ poetry add -D pytest     ## adding pytest
@@ -313,5 +320,28 @@ $ s=`poetry version patch`; pytest tests/ && git ci -m "`echo $s`" pyproject.tom
 ## Facility with make
 Use make to easy various commands.
 ```bash
-$ curl https://pastebin.com/raw/AKmCM7MC -o Makefile
+$ curl https://pastebin.com/raw/eTHpL70G -o Makefile
+```
+### Makefile help
+```bash
+$ make help
+```
+### New prerelease with Makefile
+```bash
+$ git co dev
+$ git merge --no-ff [branch] --autostash
+$ make prerelease
+```
+### New release with Makefile
+```bash
+$ git co dev
+$ make release
+```
+### Checking lint
+```bash
+$ make lint
+```
+### Run tox over make
+```bash
+$ make tox
 ```

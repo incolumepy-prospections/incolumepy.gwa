@@ -1,10 +1,12 @@
 .DEFAULT_GOAL := help
 DIRECTORIES = $$(find -name incolumepy -o -wholename ./tests)
 PKGNAME := "incolumepy.gwa"
+
+.PHOMY: setup
 setup: ## setup environment python with poetry
-setup:
 	@poetry env use 3.10
 
+#.PHOMY: install
 #install:  ## Install this package using poetry
 #install: setup
 #	@poetry add $(PKGNAME)

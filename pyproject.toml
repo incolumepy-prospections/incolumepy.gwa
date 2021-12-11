@@ -15,9 +15,9 @@ include = [
 
 [tool.poetry.urls]
 homepage = "https://pypi.org/project/incolumepy.gwa"
-repository = "https://github.com/incolumepy/incolumepy.gwa"
-"Bug Tracker" = "https://github.com/incolumepy/incolumepy.gwa/issues"
-license = "https://github.com/incolumepy/incolumepy.gwa/blob/main/LICENSE"
+repository = "https://github.com/incolumepy-prospections/incolumepy.gwa"
+"Bug Tracker" = "https://github.com/incolumepy-prospections/incolumepy.gwa/issues"
+license = "https://github.com/incolumepy-prospections/incolumepy.gwa/blob/main/LICENSE"
 
 [tool.poetry.dependencies]
 python = ">=3.6.8,<4"

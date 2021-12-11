@@ -104,6 +104,10 @@ git checkout main; git merge --no-ff dev -m "$$msg" \
 && git tag -f $$(poetry version -s) -m "$$msg" \
 && git checkout dev
 
+.PHONY: publish-testing
+publish-testing: ## Publish on test.pypi.org
+	@poetry publish -r testpypi --build
+
 .PHONY: format
 format: ## Formate project code with code style (isort, black)
 format: clean isort black

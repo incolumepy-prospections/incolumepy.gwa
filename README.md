@@ -322,3 +322,26 @@ Use make to easy various commands.
 ```bash
 $ curl https://pastebin.com/raw/eTHpL70G -o Makefile
 ```
+### Makefile help
+```bash
+$ make help
+```
+### New prerelease with Makefile
+```bash
+$ git co dev
+$ git merge --no-ff [branch] --autostash
+$ make prerelease
+```
+### New release with Makefile
+```bash
+$ git co dev
+$ make release
+```
+### Checking lint
+```bash
+$ make lint
+```
+### Run tox over make
+```bash
+$ make tox
+```

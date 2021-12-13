@@ -1,5 +1,4 @@
-name: publish automatically
-
+name: publish automatically    #  Success running
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]

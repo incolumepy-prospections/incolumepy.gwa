@@ -1,9 +1,9 @@
-name: publish automaticly
+name: publish automatically
 
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]
-    branches: [dev,main]
+    branches: [main]
     types:
       - completed
 

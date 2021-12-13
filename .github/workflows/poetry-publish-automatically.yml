@@ -1,0 +1,31 @@
+name: Poetry Publish Automatically
+
+on:
+  workflow_run:
+    workflows: ["Tests CI/CD"]
+    branches:
+      - dev
+      - main
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and publish to pypi
+        uses: JRubics/poetry-publish@v1.9
+        with:
+          allow_poetry_pre_release: "no"
+          pypi_token: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Build and publish to testpypi
+        uses: JRubics/poetry-publish@v1.9
+        with:
+          allow_poetry_pre_release: "yes"
+          pypi_token: ${{ secrets.TEST_PYPI_TOKEN }}
+          repository_name: "testpypi"
+          repository_url: "https://test.pypi.org/legacy/"

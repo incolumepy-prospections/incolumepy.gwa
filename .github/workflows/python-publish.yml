@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Python Publish
+name: Python Publish     # Dont run
 on:
   release:
     types: [published]

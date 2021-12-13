@@ -2,7 +2,7 @@ name: publish automatically    #  Success running
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]
-    branches: [main, dev]
+    branches: [main]
     types:
       - completed
 
@@ -26,7 +26,6 @@ jobs:
           python -m build --sdist --wheel --outdir dist/ .
 
       - name: Publish distribution 📦 to Test PyPI
-        if: startsWith(github.ref, 'refs/heads/dev')
         uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.TEST_PYPI_TOKEN }}

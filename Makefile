@@ -18,36 +18,36 @@ help:  ## Show this instructions
 .PHONY: check-mypy
 check-mypy: ## mypy checking
 	@echo "mypy checking .."
-	@mypy incolumepy/
+	@poetry run mypy incolumepy/
 
 .PHONY: check-flake8
 check-flake8: ## flake8 checking
 	@echo "flake8 checking .."
-	@flake8 --config pyproject.toml $(DIRECTORIES)
+	@poetry run flake8 --config pyproject.toml $(DIRECTORIES)
 
 .PHONY: check-isort
 check-isort:  ## check isort
 	@echo "isort checking .."
-	@isort --check --atomic --py all $(DIRECTORIES)
+	@poetry run isort --check --atomic --py all $(DIRECTORIES)
 
 .PHONY: check-pylint
 check-pylint: ## pylint checking
 	@echo "pylint checking .."
-	@pylint $(DIRECTORIES)
+	@poetry run pylint $(DIRECTORIES)
 
 .PHONY: check-black
 check-black: ## black checking
 	@echo "Black checking .."
-	@black --check $(DIRECTORIES)
+	@poetry run black --check $(DIRECTORIES)
 
 .PHONY: check-docstyle
 check-docstyle: ## docstring checking
 	@echo "docstyle checking .."
-	@pydocstyle $(DIRECTORIES)
+	@poetry run pydocstyle $(DIRECTORIES)
 
 .PHONY: isort
 isort:  ## isort apply
-	@isort --atomic --py all incolumepy/ tests/ && git commit -m "Applied Code style isort format automaticly at `date +"%F %T"`" . || echo
+	@poetry run isort --atomic --py all incolumepy/ tests/ && git commit -m "Applied Code style isort format automaticly at `date +"%F %T"`" . || echo
 	@echo ">>>  Applied code style isort format automaticly  <<<"
 
 .PHONY: black
@@ -62,7 +62,7 @@ lint: check-mypy check-pylint check-flake8 check-docstyle check-isort check-blac
 .PHONY: test
 test: ## Run all tests avaliable and generate html coverage
 test: lint
-	@pytest  tests/ -vv --cov=$$(PKGNAME) --cov-report='html'
+	@poetry run pytest  tests/ -vv --cov=$$(PKGNAME) --cov-report='html'
 
 .PHONY: clean
 clean: ## Shallow clean into environment (.pyc, .cache, .egg, .log, et all)

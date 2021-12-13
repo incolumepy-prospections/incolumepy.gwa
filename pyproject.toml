@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "incolumepy.gwa"
-version = "0.1.5"
+version = "0.1.6"
 description = "Prospections from Github Workflows Actions"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 license = "BSD 2-Clause License"
@@ -147,7 +147,7 @@ commands =
 
 [testenv:flake8]
 deps = flake8
-commands = flake8 --config pyproject.toml incolumepy/ tests/
+commands = poetry run flake8 --config pyproject.toml incolumepy/ tests/
 
 [testenv:mypy]
 deps =

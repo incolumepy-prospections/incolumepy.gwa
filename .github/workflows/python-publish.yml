@@ -8,7 +8,7 @@
 
 name: Python Publish
 on:
-  release:
+  main:
     types: [published]
 jobs:
   deploy:

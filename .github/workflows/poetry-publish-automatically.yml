@@ -10,19 +10,25 @@ on:
       - completed
 
 jobs:
-  build:
+  build pypi:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
       - name: Build and publish to pypi
+        if: startsWith(github.ref, 'refs/heads/main')
         uses: JRubics/poetry-publish@v1.9
         with:
           allow_poetry_pre_release: "no"
           pypi_token: ${{ secrets.PYPI_TOKEN }}
 
+  build testpypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
       - name: Build and publish to testpypi
+        if: startsWith(github.ref, 'refs/heads/dev')
         uses: JRubics/poetry-publish@v1.9
         with:
           allow_poetry_pre_release: "yes"

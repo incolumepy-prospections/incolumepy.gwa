@@ -30,7 +30,9 @@ isort = "^5.10.1"
 pydocstyle = "^6.1.1"
 pylint = "^2.12.2"
 mypy = "^0.910"
-black = "^21.12b0"
+black = [
+  { version = "*", python = "^3.6", allow-prereleases = true, markers = "platform_python_implementation == 'CPython'"},
+]
 flake8 = "^4.0.1"
 tox = "^3.24.4"
 types-toml = "^0.10.1"

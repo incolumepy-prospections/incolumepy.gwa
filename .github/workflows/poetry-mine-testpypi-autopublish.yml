@@ -8,8 +8,13 @@ on:
 jobs:
   publish_testpypi:
     runs-on: ubuntu-latest
+    if:
+      contains('
+      refs/heads/dev
+      ', github.ref)
+
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2

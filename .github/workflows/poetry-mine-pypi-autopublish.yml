@@ -1,4 +1,4 @@
-name: Poetry Mine Pypi Autopublish
+name: Poetry Mine Pypi Autopublish    # Success Run
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]

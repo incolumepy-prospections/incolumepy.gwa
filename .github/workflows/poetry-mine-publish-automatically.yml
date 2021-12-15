@@ -2,7 +2,7 @@ name: poetry-mine-publish-automatically    #Success Run
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]
-    branches: [dev,main]
+    branches: [dev, main]
     types:
       - completed
 jobs:

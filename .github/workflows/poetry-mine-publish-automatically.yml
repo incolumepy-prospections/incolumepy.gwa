@@ -2,7 +2,7 @@ name: poetry-mine-publish-automatically    #Success Run
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]
-    branches: [main]
+    branches: [dev,main]
     types:
       - completed
 jobs:
@@ -32,9 +32,11 @@ jobs:
           poetry build
 
       - name: Publish to testpypi
+        if: startsWith(github.ref, 'refs/heads/dev')
         run: |
           poetry publish -r testpypi
 
       - name: Publish to pypi
+        if: startsWith(github.ref, 'refs/heads/main')
         run: |
           poetry publish

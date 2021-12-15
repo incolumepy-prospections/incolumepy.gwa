@@ -91,9 +91,17 @@ clean-all: clean
 	@echo " Ok."
 
 .PHONY: prerelease
-prerelease: ## Generate new prerelease commit version default semver
-prerelease: test format
+prerelease: test format   ## Generate new prerelease commit version default semver
 	@v=$$(poetry version prerelease); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
+
+.PHONY: prerelease-force
+prerelease-force: test format   ## Generate new prerelease commit version default semver and your tag forcing merge into main branch
+	@msg=$$(poetry version prerelease); poetry run pytest tests/; \
+git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
+&& git tag -f $$(poetry version -s) -m "$$msg"; \
+git checkout main; git merge --no-ff dev -m "$$msg" \
+&& git tag -f $$(poetry version -s) -m "$$msg" \
+&& git checkout dev    #com tag
 
 .PHONY: release
 release: test ## Generate new release commit with version/tag default semver
@@ -102,7 +110,7 @@ git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
 && git tag -f $$(poetry version -s) -m "$$msg"; \
 git checkout main; git merge --no-ff dev -m "$$msg" \
 && git tag -f $$(poetry version -s) -m "$$msg" \
-&& git checkout dev
+&& git checkout dev    #com tag
 
 .PHONY: publish-testing
 publish-testing: ## Publish on test.pypi.org

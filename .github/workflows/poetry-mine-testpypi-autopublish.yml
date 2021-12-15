@@ -9,7 +9,7 @@ jobs:
   publish_testpypi:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@dev
 
       - name: Set up Python
         uses: actions/setup-python@v2

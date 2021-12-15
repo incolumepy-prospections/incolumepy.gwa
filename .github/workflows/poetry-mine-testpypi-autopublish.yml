@@ -8,11 +8,6 @@ on:
 jobs:
   publish_testpypi:
     runs-on: ubuntu-latest
-    if:
-      contains('
-      refs/heads/dev
-      ', github.ref)
-
     steps:
       - uses: actions/checkout@v2
 

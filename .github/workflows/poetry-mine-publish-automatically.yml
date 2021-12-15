@@ -1,4 +1,4 @@
-name: poetry-mine-publish-automatically
+name: poetry-mine-publish-automatically    # Success Run
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]

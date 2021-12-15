@@ -1,12 +1,9 @@
-name: Poetry Mine Pypi Autopublish    # Success Run
-on:
-  workflow_run:
-    workflows: ["Tests CI/CD"]
-    branches: [main]
-    types:
-      - completed
+name: Poetry Test PyPI Manual Publish
+
+on: workflow_dispatch
+
 jobs:
-  publish_testpypi:
+  publish-Test-PyPI:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -23,13 +20,13 @@ jobs:
 
       - name: Configure repository access
         run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_TOKEN }}
 
-      - name: Build package
-        run: |
+      - name: Build a binary wheel and a source tarball
+        run: >-
           poetry build
 
-      - name: Publish to pypi
+      - name: Publish distribution 📦 to Test PyPI
         run: |
-          poetry publish
-
+          poetry publish -r testpypi

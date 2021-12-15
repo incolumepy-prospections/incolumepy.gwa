@@ -1,5 +1,6 @@
 [![Tests CI/CD](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/tests_ci_cd.yaml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/tests_ci_cd.yaml)
 [![publish automatically](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/publish-automatically.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/publish-automatically.yml)
+[![poetry-mine-publish-automatically](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-mine-publish-automatically.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-mine-publish-automatically.yml)
 # incolumepy.gwa
 Prospection GitHub Workflows Actions
 

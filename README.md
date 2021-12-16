@@ -35,11 +35,13 @@ Contains:
 4. Configure project structure:
    1. Set Editor configuration:
       ```bash
-      $ curl https://pastebin.com/raw/TrDhuvFZ -o .editorconfig
+      $ curl https://pastebin.com/raw/TrDhuvFZ -o .editorconfig # or
+      $ curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.editorconfig -o .editorconfig
       ```
    2. Update gitignore:
       ```bash
-      $ curl https://pastebin.com/raw/C910Dqze -o .gitignore
+      $ curl https://pastebin.com/raw/C910Dqze -o .gitignore   #or
+      $ curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.gitignore -o .gitignore
       ```
     3. Commit changes
 5. Configure poetry:
@@ -326,7 +328,8 @@ $ s=`poetry version patch`; pytest tests/ && git ci -m "`echo $s`" pyproject.tom
 ## Facility with make
 Use make to easy various commands.
 ```bash
-$ curl https://pastebin.com/raw/eTHpL70G -o Makefile
+$ curl https://pastebin.com/raw/eTHpL70G -o Makefile    # or
+$ curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/Makefile -o Makefile    # last version
 ```
 ### Makefile help
 ```bash
@@ -350,4 +353,42 @@ $ make lint
 ### Run tox over make
 ```bash
 $ make tox
+```
+
+# Github Workflows Actions (GWA)
+First create the directory for GWA:
+```bash
+mkdir -pv .github/workflows
+```
+
+## This Models:
+
+- Run tox and  generate coverage report:
+```bash
+curl https://raw.githubuserconcurl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/tests_ci_cd.yaml -o .github/workflows/tests_ci_cd.yml
+```
+
+- Publish manualy releases/prereleases into test.pypi.org with poetry:
+```bash
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/poetry-testpypi-manual-publish.yml -o .github/workflows/poetry-testpypi-manual-publish.yml
+```
+
+- Publish automatically releases into pypi.org and test.pypi.org with poetry, after pass on tests from tests_ci_cd:
+```bash
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/poetry-mine-publish-automatically.yml -o .github/workflows/poetry-mine-publish-automatically.yml
+```
+
+- Publish automatically releases into pypi.org only, after pass on tests from tests_ci_cd:
+```bash
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/poetry-mine-pypi-autopublish.yml -o  .github/workflows/poetry-mine-pypi-autopublish.yml
+```
+
+- Publish automatically releases into pypi.org and test.pypi.org without poetry, after pass on tests from tests_ci_cd:
+```bash
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/publish-automatically.yml -o .github/workflows/publish-automatically.yml
+```
+
+- Publish automatically releases into pypi.org and test.pypi.org with multiprocess poetry, after pass on tests from tests_ci_cd:
+```bash
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/poetry-multiprocess.yml -o .github/workflows/poetry-multiprocess.yml
 ```

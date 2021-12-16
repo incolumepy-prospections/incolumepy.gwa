@@ -34,6 +34,7 @@ jobs:
 
   publish-testpypi:
     name: Publish Test PyPI
+    runs-on: ubuntu-latest
     needs: [build]
     steps:
       - uses: actions/checkout@v2
@@ -64,6 +65,7 @@ jobs:
 
   publish-pypi:
     name: Publish PyPI
+    runs-on: ubuntu-latest
     needs: [build]
     steps:
       - uses: actions/checkout@v2

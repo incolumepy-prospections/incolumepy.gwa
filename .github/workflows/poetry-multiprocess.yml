@@ -1,4 +1,4 @@
-name: Poetry Multiprocess    # Success Run
+name: Poetry Multiprocess
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]

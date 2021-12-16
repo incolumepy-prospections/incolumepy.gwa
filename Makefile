@@ -94,6 +94,15 @@ clean-all: clean
 premajor: test format  ## Generate new premajor commit version default semver
 	@v=$$(poetry version premajor); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
 
+.PHONY: premajor-force
+premajor-force: test format  ## Generate new premajor commit version default semver and your tag forcing merge into main branch
+	@msg=$$(poetry version premajor); poetry run pytest tests/; \
+git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
+&& git tag -f $$(poetry version -s) -m "$$msg"; \
+git checkout main; git merge --no-ff dev -m "$$msg" \
+&& git tag -f $$(poetry version -s) -m "$$msg" \
+&& git checkout dev    #com tag
+
 .PHONY: preminor
 preminor: test format  ## Generate new preminor commit version default semver
 	@v=$$(poetry version preminor); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag

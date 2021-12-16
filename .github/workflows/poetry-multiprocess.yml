@@ -6,8 +6,8 @@ on:
     types:
       - completed
 jobs:
-  environment:
-    name: Environment
+  build:
+    name: Create env and build pack
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -27,29 +27,44 @@ jobs:
           poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
           poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_TOKEN }}
-  build:
-    name: Build
-    uses: {{environment}}
-    needs: [Environment]
-    steps:
-      - name: Build package version
+
+      - name: Build package release
         run: |
           poetry build
 
+      - uses: actions/upload-artifact@v2
+        if: success()   # failure():: => contexts#job-status-check-functions
+        with:
+          name: build-package
+          path: dist/
+          if-no-files-found: error   # 'error', 'warn' or 'ignore' are also available, defaults to `warn`
+
   publish-testpypi:
     name: Publish Test PyPI
-    uses: {{build}}
-    needs: [Build]
+    needs: [build]
     steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: build-package
+          path: dist/
+
       - name: Publish to testpypi
         run: |
           poetry publish -r testpypi
 
   publish-pypi:
     name: Publish PyPI
-    uses: {{build}}
-    needs: [Build]
+    needs: [build]
     steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: build-package
+          path: dist/
+
       - name: Publish to pypi
         run: |
           poetry publish

@@ -90,6 +90,10 @@ clean-all: clean
 	@poetry env list|awk '{print $1}'|while read a; do poetry env remove $${a}; done
 	@echo " Ok."
 
+.PHONY: preminor
+preminor: test format  ## Generate new preminor commit version default semver
+	@v=$$(poetry version preminor); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
+
 .PHONY: prerelease
 prerelease: test format   ## Generate new prerelease commit version default semver
 	@v=$$(poetry version prerelease); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag

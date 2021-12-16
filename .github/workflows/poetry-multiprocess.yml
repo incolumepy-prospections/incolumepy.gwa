@@ -29,7 +29,7 @@ jobs:
           poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_TOKEN }}
   build:
     name: Build
-    runs-on: ubuntu-latest
+    uses: {{environment}}
     needs: [Environment]
     steps:
       - name: Build package version
@@ -38,7 +38,7 @@ jobs:
 
   publish-testpypi:
     name: Publish Test PyPI
-    runs-on: ubuntu-latest
+    uses: {{build}}
     needs: [Build]
     steps:
       - name: Publish to testpypi
@@ -47,7 +47,7 @@ jobs:
 
   publish-pypi:
     name: Publish PyPI
-    runs-on: ubuntu-latest
+    uses: {{build}}
     needs: [Build]
     steps:
       - name: Publish to pypi

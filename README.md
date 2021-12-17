@@ -4,6 +4,7 @@
 [![Poetry Mine Pypi Autopublish](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-mine-pypi-autopublish.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-mine-pypi-autopublish.yml)
 [![Poetry Test PyPI Manual Publish](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-testpypi-manual-publish.yml/badge.svg?branch=dev)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-testpypi-manual-publish.yml)
 [![Poetry Multiprocess](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-multiprocess.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-multiprocess.yml)
+[![tagged-release](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/targged-release.yaml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/targged-release.yaml)
 # incolumepy.gwa
 Prospection GitHub Workflows Actions
 

@@ -365,6 +365,10 @@ mkdir -pv .github/workflows
 ```
 
 ## This Models:
+- GitHub WorkFlow with tags Running tox; Build pack; Create release; publish TestPyPI and PyPI
+```bash
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/gwa-flow.yml -o .github/workflows/gwa-flow.yml
+```
 
 - Run tox and  generate coverage report:
 ```bash

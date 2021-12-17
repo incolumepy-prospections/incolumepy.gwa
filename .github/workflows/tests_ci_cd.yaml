@@ -1,10 +1,9 @@
-name: Tests CI/CD
+name: Tests CI/CD    #Success run
 
 on:
   pull_request:
     branches: [main, dev]
   push:
-    branches-ignore: [tags]
 
 jobs:
   test:

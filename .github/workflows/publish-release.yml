@@ -3,7 +3,7 @@ name: Publish Release
 on:
   push:
     tags:
-      - 'v*'
+      - '*.*.*'
 
 jobs:
   build:
@@ -15,4 +15,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        args: MyReleaseMessage
+        args: ${{ steps.Changelog.outputs.changelog }}

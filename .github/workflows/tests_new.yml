@@ -1,9 +1,11 @@
-name: Tests CI/CD    #Success run
+name: Tests/Release
 
 on:
   pull_request:
     branches: [main, dev]
   push:
+    tags:
+      - "*.*.*"
 
 jobs:
   test:
@@ -31,3 +33,20 @@ jobs:
     - name: Generate coverage report
       run: |
         poetry run pytest -v --cov=./incolumepy --cov-report=xml
+
+  tagged-release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
+    needs: [tests]
+    steps:
+#      # ...
+#      - name: "Build & test"
+#        run: |
+#          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            dist/*

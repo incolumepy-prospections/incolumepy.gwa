@@ -6,6 +6,7 @@
 [![Poetry Multiprocess](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-multiprocess.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/poetry-multiprocess.yml)
 [![tagged-release](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/targged-release.yaml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/targged-release.yaml)
 [![Tests/Release](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/tests_new.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/tests_new.yml)
+[![GWA Flow](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/gwa-flow.yml/badge.svg)](https://github.com/incolumepy-prospections/incolumepy.gwa/actions/workflows/gwa-flow.yml)
 # incolumepy.gwa
 Prospection GitHub Workflows Actions
 

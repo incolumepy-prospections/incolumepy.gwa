@@ -1,4 +1,4 @@
-name: Tests/Release
+name: Tests/Release    #Partial Success run
 
 on:
   pull_request:
@@ -40,11 +40,6 @@ jobs:
     runs-on: "ubuntu-latest"
     needs: [test]
     steps:
-#      # ...
-#      - name: "Build & test"
-#        run: |
-#          echo "done!"
-
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"

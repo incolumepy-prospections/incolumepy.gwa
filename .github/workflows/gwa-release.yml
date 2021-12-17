@@ -1,4 +1,4 @@
-name: GWA Release
+name: GWA Release   # Fail
 on:
   workflow_run:
     workflows: ["Tests CI/CD"]

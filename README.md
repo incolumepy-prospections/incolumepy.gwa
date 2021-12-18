@@ -93,7 +93,7 @@ Contains:
 ## Linters and Checkers
 1. Adding lint/control tools
    1. ```bash
-      $ poetry add -D isort pydocstyle pylint mypy black flake8 tox
+      $ poetry add -D black flake8 isort mypy pydocstyle pylint pytest-cov tox[tomli]
       $ git ci -m "Adding tox and lint tools" poetry.lock pyproject.toml
       ```
 2. Configure code coverage

@@ -1,11 +1,10 @@
+__author__ = "@britodfbr"  # pragma: no cover
 import re
 
 import pytest
 
 from incolumepy.gwa import __root__, __version__, version_file
 from incolumepy.gwa.hello import hello
-
-__author__ = "@britodfbr"  # pragma: no cover
 
 
 def test_root():

@@ -4,10 +4,24 @@ version = "0.3.3"
 description = "Prospections from Github Workflows Actions"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 license = "BSD 2-Clause License"
+readme = "README.md"
+keywords = ["utilities"]
 packages=[
     {include = 'incolumepy/gwa', from=''},
 ]
-readme="README.md"
+classifiers = [
+  'Environment :: Web Environment',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3.6',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'License :: Other/Proprietary License',
+  'Operating System :: OS Independent',
+  'Natural Language :: Portuguese',
+  'Topic :: Software Development :: Libraries :: Python Modules',
+]
 include = [
   "LICENSE",
   "pyproject.toml",
@@ -37,6 +51,7 @@ flake8 = "^4.0.1"
 tox = "^3.24.4"
 types-toml = "^0.10.1"
 tox-gh-actions = "^2.8.1"
+"incolumepy.makefilelicense" = "^0.3.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -44,16 +59,29 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 addopts = "--cov=incolumepy.gwa"
+minversion = 6.2  # will fail if we run with pytest-6.1
+# --strict-markers: Restringe a utilização de marcadores não registrados
+# --cov: paramentro para coverage
 testpaths = [
   "tests",
 ]
+markers = [
+  "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+  "withnamedtuple: select this with '-m withnamedtuple'",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    # note the use of single quote below to denote "raw" strings in TOML
+    'ignore:function ham\(\) is deprecated:DeprecationWarning',
+]
 
 [flake8]
-max-line-length = 160
+max-line-length = 120
 
 [tool.pylint.format]
 # Maximum number of characters on a single line.
-max-line-length = 160
+max-line-length = 120
 
 [tool.pylint.basic]
 # Allow shorter and longer variable names than the default.
@@ -115,12 +143,12 @@ warn_unused_configs = true
 no_implicit_reexport = true
 
 [tool.isort]
+line_length = 120
 multi_line_output = 3
-line_length = 160
 include_trailing_comma = true
 
 [tool.black]
-line_length = 160
+line_length = 120
 
 [tool.tox]
 legacy_tox_ini = """

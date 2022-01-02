@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# comand genarator documentation here
+git add docs/
+git commit -m "Update documentation ($(date +%F@%T))"

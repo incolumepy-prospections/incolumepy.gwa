@@ -45,13 +45,14 @@ pydocstyle = "^6.1.1"
 pylint = "^2.12.2"
 mypy = "^0.910"
 black = [
-  { version = "*", python = "^3.6", allow-prereleases = true, markers = "platform_python_implementation == 'CPython'"},
+  { version = "*", extras = ["jupyter"], python = "^3.6", allow-prereleases = true, markers = "platform_python_implementation == 'CPython'"},
 ]
 flake8 = "^4.0.1"
 tox = "^3.24.4"
 types-toml = "^0.10.1"
 tox-gh-actions = "^2.8.1"
 "incolumepy.makefilelicense" = "^0.3.1"
+jupyter = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

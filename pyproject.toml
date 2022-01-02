@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "incolumepy.gwa"
-version = "0.4.0"
+version = "0.4.1-alpha.0"
 description = "Prospections from Github Workflows Actions"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 license = "BSD 2-Clause License"

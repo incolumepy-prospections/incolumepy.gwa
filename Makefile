@@ -5,6 +5,7 @@ PKGNAME := "incolumepy.gwa"
 .PHOMY: setup
 setup: ## setup environment python with poetry
 	@poetry env use 3.10
+	@git config core.hooksPath .git-hooks
 
 #.PHOMY: install
 #install:  ## Install this package using poetry

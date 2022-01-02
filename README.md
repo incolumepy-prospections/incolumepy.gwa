@@ -399,3 +399,27 @@ curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/ma
 ```bash
 curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.github/workflows/poetry-multiprocess.yml -o .github/workflows/poetry-multiprocess.yml
 ```
+
+## Git Hooks
++ create .git-hooks folder into your project root directory, at the same level you already have .git folder;
+```shell
+mkdir .git-hooks
+```
++ create hook files into this folder: pre-commit, prepare-commit-msg and all hooks (these files don't have an extension);
++ put the correct code into each file (I will add them below these steps);
+```shell
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.git-hooks/pre-commit -o .git-hooks/pre-commit
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.git-hooks/prepare-commit-msg -o .git-hooks/prepare-commit-msg
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.git-hooks/commit-msg -o .git-hooks/commit-msg
+curl https://raw.githubusercontent.com/incolumepy-prospections/incolumepy.gwa/main/.git-hooks/pre-push -o .git-hooks/pre-push
+```
++ change to execute mode;
+```shell
+chmod +x .git-hooks/*
+```
++ run this command in your command line, into your main folder of your project (one level up from .git-hooks):
+```shell
+git config core.hooksPath .git-hooks;
+```
+
++ READY;

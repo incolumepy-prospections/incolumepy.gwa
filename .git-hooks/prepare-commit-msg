@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MESSAGE=$(cat $1)
-COMMITFORMAT="^((feature|fix|docs|refactor|test|chore|perf|other)(\((.*)\))?: #([0-9]+)|(Merge|Bumping)) (.*)$"
+COMMITFORMAT="^((feature|fix|docs|refactor|test|chore|perf|other)(\((.*)\))?: #([0-9]+)|(Merge|Bumping|Update documentation)) (.*)$"
 if ! [[ "$MESSAGE" =~ $COMMITFORMAT ]]; then
   echo "Your commit was rejected due to the commit message. Skipping..."
   echo ""

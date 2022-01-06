@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "incolumepy.gwa"
-version = "0.5.0"
+version = "0.6.0"
 description = "Prospections from Github Workflows Actions"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 license = "BSD 2-Clause License"
@@ -37,6 +37,7 @@ flake8 = "^4.0.1"
 tox = "^3.24.4"
 types-toml = "^0.10.1"
 tox-gh-actions = "^2.8.1"
+Sphinx = "^4.3.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

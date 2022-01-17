@@ -1,11 +1,13 @@
 .DEFAULT_GOAL := help
-DIRECTORIES = $$(find -name incolumepy -o -wholename ./tests)
+DIRECTORIES = $$(find -wholename ./src -o -wholename ./incolumepy -o -wholename ./tests)
 PKGNAME := "incolumepy.gwa"
 
 .PHOMY: setup
 setup: ## setup environment python with poetry
 	@poetry env use 3.10
 	@git config core.hooksPath .git-hooks
+	@poetry shell
+	@poetry install
 
 #.PHOMY: install
 #install:  ## Install this package using poetry
@@ -19,7 +21,7 @@ help:  ## Show this instructions
 .PHONY: check-mypy
 check-mypy: ## mypy checking
 	@echo "mypy checking .."
-	@poetry run mypy incolumepy/
+	@poetry run mypy $(DIRECTORIES)
 
 .PHONY: check-flake8
 check-flake8: ## flake8 checking
@@ -48,12 +50,12 @@ check-docstyle: ## docstring checking
 
 .PHONY: isort
 isort:  ## isort apply
-	@poetry run isort --atomic --py all incolumepy/ tests/ && git commit -m "Applied Code style isort format automaticly at `date +"%F %T"`" . || echo
+	@poetry run isort --atomic --py all $(DIRECTORIES) && git commit -m "style: Applied Code style isort format automaticly at `date +"%F %T"`" . || echo
 	@echo ">>>  Applied code style isort format automaticly  <<<"
 
 .PHONY: black
 black:  ##Apply code style black format
-	@poetry run black $(DIRECTORIES) && git commit -m "Applied Code style Black format automaticly at `date +"%F %T"`" . || echo
+	@poetry run black $(DIRECTORIES) && git commit -m "style: Applied Code style Black format automaticly at `date +"%F %T"`" . || echo
 	@echo ">>>  Applied code style Black format automaticly  <<<"
 
 .PHONY: lint
@@ -72,6 +74,7 @@ clean: ## Shallow clean into environment (.pyc, .cache, .egg, .log, et all)
 	@find ./ -name '*~' -exec rm -f {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
 	@find ./ -name '*.log' -exec rm -f {} \;
+	@find ./ -name '*.log.*' -exec rm -f {} \;
 	@find ./ -name ".cache" -exec rm -fr {} \;
 	@find ./ -name "*.egg-info" -exec rm -rf {} \;
 	@find ./ -name "*.coverage" -exec rm -rf {} \;
@@ -79,16 +82,15 @@ clean: ## Shallow clean into environment (.pyc, .cache, .egg, .log, et all)
 	@echo " Ok."
 
 .PHONY: clean-all
-clean-all: ## Deep cleanning into environment (dist, build, htmlcov, .tox, *_cache, et all)
-clean-all: clean
+clean-all: clean   ## Deep cleanning into environment (dist, build, htmlcov, .tox, *_cache, et all)
 	@echo -n "Deep cleanning .."
 	@rm -rf dist
 	@rm -rf build
 	@rm -rf htmlcov
 	@rm -rf .tox
-	@rm -rf ".pytest_cache" ".mypy_cache"
+	@find ./ -name "*_cache" -exec rm -rf {} \;
 	@#fuser -k 8000/tcp &> /dev/null
-	@poetry env list|awk '{print $1}'|while read a; do poetry env remove $${a}; done
+	@poetry env list|awk '{print $1}'|while read a; do poetry env remove ${a}; done
 	@echo " Ok."
 
 .PHONY: premajor
@@ -97,7 +99,7 @@ premajor: test format  ## Generate new premajor commit version default semver
 
 .PHONY: premajor-force
 premajor-force: test format  ## Generate new premajor commit version default semver and your tag forcing merge into main branch
-	@msg=$$(poetry version premajor); poetry run pytest tests/; \
+	@msg=$$(poetry version premajor); poetry run pytest -m fasttest tests/; \
 git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
 && git tag -f $$(poetry version -s) -m "$$msg"; \
 git checkout main; git merge --no-ff dev -m "$$msg" \
@@ -106,11 +108,11 @@ git checkout main; git merge --no-ff dev -m "$$msg" \
 
 .PHONY: preminor
 preminor: test format  ## Generate new preminor commit version default semver
-	@v=$$(poetry version preminor); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
+	@v=$$(poetry version preminor); poetry run pytest -m fasttest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
 
 .PHONY: preminor-force
 preminor-force: test format  ## Generate new preminor commit version default semver and your tag forcing merge into main branch
-	@msg=$$(poetry version preminor); poetry run pytest tests/; \
+	@msg=$$(poetry version preminor); poetry run pytest -m fasttest tests/; \
 git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
 && git tag -f $$(poetry version -s) -m "$$msg"; \
 git checkout main; git merge --no-ff dev -m "$$msg" \
@@ -119,11 +121,11 @@ git checkout main; git merge --no-ff dev -m "$$msg" \
 
 .PHONY: prerelease
 prerelease: test format   ## Generate new prerelease commit version default semver
-	@v=$$(poetry version prerelease); poetry run pytest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
+	@v=$$(poetry version prerelease); poetry run pytest -m fasttest tests/ && git commit -m "$$v" pyproject.toml $$(find -name version.txt)  #sem tag
 
 .PHONY: prerelease-force
 prerelease-force: test format   ## Generate new prerelease commit version default semver and your tag forcing merge into main branch
-	@msg=$$(poetry version prerelease); poetry run pytest tests/; \
+	@msg=$$(poetry version prerelease); poetry run pytest -m fasttest tests/; \
 git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
 && git tag -f $$(poetry version -s) -m "$$msg"; \
 git checkout main; git merge --no-ff dev -m "$$msg" \
@@ -132,7 +134,7 @@ git checkout main; git merge --no-ff dev -m "$$msg" \
 
 .PHONY: release
 release: test ## Generate new release commit with version/tag default semver
-	@msg=$$(poetry version patch); poetry run pytest tests/; \
+	@msg=$$(poetry version patch); poetry run pytest -m fasttest tests/; \
 git commit -m "$$msg" pyproject.toml $$(find -name version.txt) \
 && git tag -f $$(poetry version -s) -m "$$msg"; \
 git checkout main; git merge --no-ff dev -m "$$msg" \

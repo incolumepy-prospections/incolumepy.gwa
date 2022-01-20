@@ -69,7 +69,7 @@ test: lint
 
 .PHONY: clean
 clean: ## Shallow clean into environment (.pyc, .cache, .egg, .log, et all)
-	@echo -n "Cleanning environment .."
+	@echo -n "Starting cleanning environment .."
 	@find ./ -name '*.pyc' -exec rm -f {} \;
 	@find ./ -name '*~' -exec rm -f {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
@@ -79,19 +79,19 @@ clean: ## Shallow clean into environment (.pyc, .cache, .egg, .log, et all)
 	@find ./ -name "*.egg-info" -exec rm -rf {} \;
 	@find ./ -name "*.coverage" -exec rm -rf {} \;
 	@rm -rf docs/_build
-	@echo " Ok."
+	@echo " finished!"
 
 .PHONY: clean-all
 clean-all: clean   ## Deep cleanning into environment (dist, build, htmlcov, .tox, *_cache, et all)
-	@echo -n "Deep cleanning .."
+	@echo "Starting Deep cleanning .."
 	@rm -rf dist
 	@rm -rf build
 	@rm -rf htmlcov
 	@rm -rf .tox
-	@find ./ -name "*_cache" -exec rm -rf {} \;
+	@find ./ -name "*_cache" -exec rm -rf {} 2> /dev/null \;
 	@#fuser -k 8000/tcp &> /dev/null
-	@poetry env list|awk '{print $1}'|while read a; do poetry env remove ${a}; done
-	@echo " Ok."
+	@poetry env list|awk '{print $$1}'|while read a; do poetry env remove $${a} && echo "$${a} removed."|| echo "$${a} not removed."; done
+	@echo "Deep cleaning finished!"
 
 .PHONY: premajor
 premajor: test format  ## Generate new premajor commit version default semver

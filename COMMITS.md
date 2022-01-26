@@ -34,8 +34,8 @@ The commit contains the following structural elements, to communicate intent to 
 ## Examples
 ### Commit message with description and breaking change footer
 ```bash
-feat: allow provided config object to extend other configs
-BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+  feat: allow provided config object to extend other configs
+  BREAKING CHANGE: `extends` key in config file is now used for extending other config files
 ```
 
 ## Commit message with ! to draw attention to breaking change
@@ -77,6 +77,7 @@ obsolete now.
 
 Reviewed-by: Z
 Refs: #123
+close #123
 ```
 
 
